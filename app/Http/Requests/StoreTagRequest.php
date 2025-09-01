@@ -6,23 +6,13 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreTagRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
-    public function authorize(): bool
-    {
-        return false;
-    }
-
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
+    public function authorize(): bool { return true; }
     public function rules(): array
     {
+        $id = $this->route('tag')?->id;
         return [
-            //
+            'name' => ['required','string','max:50','unique:tags,name'.($id?','.$id:'')],
+            'color' => ['nullable','regex:/^#?[0-9a-fA-F]{6}$/'],
         ];
     }
 }
