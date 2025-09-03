@@ -3,21 +3,21 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Project;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Issue>
- */
 class IssueFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
+        $statuses = ['open','in_progress','closed'];
+        $priorities = ['low','medium','high'];
         return [
-            //
+            'project_id' => Project::factory(),
+            'title' => fake()->sentence(5),
+            'description' => fake()->paragraphs(2, true),
+            'status' => $statuses[array_rand($statuses)],
+            'priority' => $priorities[array_rand($priorities)],
+            'due_date' => now()->addDays(rand(1,60))->toDateString(),
         ];
     }
 }
