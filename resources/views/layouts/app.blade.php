@@ -24,6 +24,8 @@
     .right{margin-left:auto}
     .tag{padding:2px 8px;border-radius:999px;border:1px solid #e5e7eb;margin-right:6px;display:inline-flex;align-items:center;gap:6px}
     .tag button{border:none;background:transparent;cursor:pointer}
+    .w-5{width: 2rem!important;}
+    .h-5{height: 2rem!important;}
   </style>
 </head>
 <body>
@@ -54,3 +56,4 @@
   @stack('scripts')
 </body>
 </html>
+
